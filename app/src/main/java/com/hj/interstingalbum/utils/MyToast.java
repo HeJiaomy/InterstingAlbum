@@ -17,7 +17,7 @@ public class MyToast {
         textView.setText(text);
         toast= new Toast(context);
         toast.setDuration(duration);
-        toast.setGravity(Gravity.CENTER,0,300);
+        toast.setGravity(Gravity.CENTER,0,100);
         toast.setView(v);
     }
 

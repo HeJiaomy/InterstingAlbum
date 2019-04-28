@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/toolbar_search"
+        android:icon="@mipmap/main_search"
+        android:title="搜索"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/toolbar_plus"
+        android:icon="@mipmap/main_plus"
+        android:title="其他"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/toolbar_switch_layout"
+        android:title="switch"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_span_1"/>
+</menu>
