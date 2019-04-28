@@ -1,13 +1,18 @@
 package com.hj.interestingalbum.fragment;
 
 import android.app.Service;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Vibrator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 import com.hj.interestingalbum.R;
+import com.hj.interestingalbum.activity.SearchActivity;
 import com.hj.interestingalbum.base.BaseFragment;
 import com.hj.interestingalbum.bean.ThreedBean;
 import com.hj.interestingalbum.fragment.viewbinder.ThreedViewBinder;
@@ -88,6 +93,31 @@ public class HomeFragment extends BaseFragment {
         myAdapter = new MultiTypeAdapter(threedBeans);
     }
 
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        getActivity().getMenuInflater().inflate(R.menu.menu_main, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent intent = new Intent();
+        switch (item.getItemId()) {
+            case R.id.toolbar_search:
+                intent.setClass(getActivity(), SearchActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.toolbar_plus:
+//                showPopupWindow();
+                break;
+        }
+        return true;
+    }
+
+    @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+    }
 
     private void setTouch() {
         mRecyclerView.addOnItemTouchListener(new OnRecyclerItemClickListener(mRecyclerView) {
