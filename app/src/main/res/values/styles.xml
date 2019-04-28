@@ -3,20 +3,22 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorGreenPrimary</item>
-        <item name="colorPrimaryDark">@color/colorGreenPrimaryDark</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
         <item name="android:windowActionBar">false</item>
+        <!-- 修改波纹颜色 -->
+        <item name="android:colorControlHighlight">@color/f6f7f9</item>
     </style>
 
-    <style name="toolbarTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="ToolbarTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:textColorPrimary">@color/color_white</item>
         <item name="android:textSize">18sp</item>
     </style>
 
-    <style name="main_radioButton_style">
+    <style name="MainRadioButtonStyle">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_weight">1</item>
@@ -27,7 +29,7 @@
         <item name="android:button">@null</item>
     </style>
 
-    <style name="main_toolbar_add_style">
+    <style name="MainToolbarAddStyle">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:gravity">center</item>
@@ -36,5 +38,4 @@
         <item name="android:paddingTop">8dp</item>
         <item name="android:paddingBottom">8dp</item>
     </style>
-
 </resources>

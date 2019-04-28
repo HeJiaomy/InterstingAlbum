@@ -1,18 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@android:color/black">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="MineFragment"
-        android:textColor="@color/color_white"
-        tools:layout_editor_absoluteX="138dp"
-        tools:layout_editor_absoluteY="80dp"
-        tools:ignore="MissingConstraints" />
-</android.support.constraint.ConstraintLayout>
+    <include layout="@layout/transparent_toolbar_layout"/>
+
+
+
+</FrameLayout>

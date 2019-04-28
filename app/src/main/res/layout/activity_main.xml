@@ -18,13 +18,13 @@
     <RadioGroup
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@drawable/shape_main_ll_bg"
+        android:background="@drawable/shape_gray_stroke"
         android:clickable="false"
         android:orientation="horizontal">
 
         <RadioButton
             android:id="@+id/rBtn_3d"
-            style="@style/main_radioButton_style"
+            style="@style/MainRadioButtonStyle"
             android:drawableTop="@drawable/select_3d_btn_img"
             android:text="3D相册"
             android:textColor="@drawable/select_main_tv_color"
@@ -32,14 +32,14 @@
 
         <RadioButton
             android:id="@+id/rBtn_fullScreen"
-            style="@style/main_radioButton_style"
+            style="@style/MainRadioButtonStyle"
             android:drawableTop="@drawable/select_full_btn_img"
             android:text="全屏"
             android:textColor="@drawable/select_main_tv_color" />
 
         <RadioButton
             android:id="@+id/rBtn_all"
-            style="@style/main_radioButton_style"
+            style="@style/MainRadioButtonStyle"
             android:drawableTop="@drawable/select_all_btn_img"
             android:gravity="center"
             android:text="所有照片"
@@ -47,7 +47,7 @@
 
         <RadioButton
             android:id="@+id/rBtn_mine"
-            style="@style/main_radioButton_style"
+            style="@style/MainRadioButtonStyle"
             android:drawableTop="@drawable/select_mine_btn_img"
             android:text="我"
             android:textColor="@drawable/select_main_tv_color" />

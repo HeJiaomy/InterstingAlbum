@@ -2,13 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorGreenPrimaryDark"
+    android:background="@color/colorAccent"
     android:gravity="center_vertical"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/tv_toolbar_add"
-        style="@style/main_toolbar_add_style"
+        style="@style/MainToolbarAddStyle"
         android:text="添加朋友"
         android:drawableStart="@mipmap/toolbar_add_friends"
         android:layout_marginStart="15dp"
@@ -21,7 +21,7 @@
 
     <TextView
         android:id="@+id/toolbar_scan"
-        style="@style/main_toolbar_add_style"
+        style="@style/MainToolbarAddStyle"
         android:drawableStart="@mipmap/toolbar_scan"
         android:text="扫一扫"
         android:layout_marginStart="15dp"
@@ -34,7 +34,7 @@
 
     <TextView
         android:id="@+id/toolbar_pay"
-        style="@style/main_toolbar_add_style"
+        style="@style/MainToolbarAddStyle"
         android:drawableStart="@mipmap/toolbar_pay"
         android:text="收付款"
         android:layout_marginStart="15dp"

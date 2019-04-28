@@ -13,6 +13,6 @@
         android:layout_height="match_parent"
         android:visibility="visible"
         app:dlv_item_drawable="@drawable/circle_background"
-        app:dlv_line_color="@color/colorGreenPrimary" />
+        app:dlv_line_color="@color/colorPrimary" />
 
 </android.support.constraint.ConstraintLayout>
