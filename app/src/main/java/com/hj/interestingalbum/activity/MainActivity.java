@@ -73,34 +73,7 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
 
     private void showPopupWindow() {
 
-        View contentView = LayoutInflater.from(this).inflate(R.layout.popup_layout, null);
-        popupWindow = new PopupWindow(contentView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
-        //显示在指定控件下;xoff表示x轴的偏移，正值表示向左，负值表示向右；yoff表示相对y轴的偏移，正值是向下，负值是向上；
-        popupWindow.showAsDropDown(toolbar, toolbar.getWidth(), 0);
-//        popupWindow.setFocusable(true);
 
-        TextView tvToolbarAdd = contentView.findViewById(R.id.tv_toolbar_add);
-        TextView toolbarScan = contentView.findViewById(R.id.toolbar_scan);
-        TextView toolbarPay = contentView.findViewById(R.id.toolbar_pay);
-        tvToolbarAdd.setOnClickListener(this);
-        toolbarScan.setOnClickListener(this);
-        toolbarPay.setOnClickListener(this);
-        //背景变暗
-        WindowManager.LayoutParams lp = getWindow().getAttributes();
-        lp.alpha = 0.5f;
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
-        getWindow().setAttributes(lp);
-        popupWindow.update();
-        //背景还原
-        popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
-            @Override
-            public void onDismiss() {
-                WindowManager.LayoutParams lp = getWindow().getAttributes();
-                lp.alpha = 1.0f;
-                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
-                getWindow().setAttributes(lp);
-            }
-        });
     }
 
     @OnClick({R.id.rBtn_3d, R.id.rBtn_fullScreen, R.id.rBtn_all, R.id.rBtn_mine})

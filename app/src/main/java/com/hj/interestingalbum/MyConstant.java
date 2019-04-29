@@ -1,0 +1,40 @@
+package com.hj.interestingalbum;
+
+public class MyConstant {
+    public static final String UPDATE_EMAIL = "update_email";
+    public static final String ADD_EMAIL = "add_email";
+    public static final String MOBILE_PREFIX = "86";
+    public static final String UPDATE_LOGIN_PASSWORD = "update_login_password";
+    public static final String UPDATE_PAY_PASSWORD = "update_pay_password";
+    public static final int ANDROID = 2;
+    public static final int HANG_SELL = 3;
+    public static final int AUTO_SELL = 2;
+    public static final String STEAM_BIND_URL = "https://steamcommunity.com/login/home/?goto=";
+    public static boolean IS_COMMIT = false;
+    public static final String NETEASE_PACKAGE_NAME = "com.netease.uu";
+    public static final String API_KEY = "https://steamcommunity.com/dev/apikey";
+    public static final int ACCESS_TRADE_OFFERS = 111;
+    public static final int ACCESS_API_KEY = 112;
+    public static final int SEND_OFFER = 1;
+    public static final int RESEND_OFFER = 2;
+    public static final int OUT_TIME_OFFER = 3;
+    public static final int NO_OFFER_ORDER = 4;
+    public static final int OFFER_SENDING = 5;
+    public static final int OFFER_INTERCEPT = 6;
+    public static final int OFFER_FAILED_RETRY = 7;
+    public static final int SALE_PERMISSION_ALLOW = 8;
+    public static final int SHARE_IMAGE_ONLY = 1;
+    public static final int SHARE_IMAGE_TEXT = 2;
+    public static final int REQUEST_INSTALL_APP = 3;
+    public static final int WALLET_MESSAGE_COUNT_DOWN = 120;
+    public static final int BANK_REQUEST = 1;
+    public static final String BIND_CASH_ACCOUNT = "bind_cash_account";
+    public static final String UNBIND_CASH_ACCOUNT = "unbind_cash_account";
+    public static int KF_MSG_COUNT = 0;
+    public static int REVEAL_ANIM_TYPE_CENTER = 1;
+    public static int REVEAL_ANIM_TYPE_LEFT = 2;
+    public static int REVEAL_ANIM_TYPE_RIGHT = 3;
+    public static int WECHAT_PAY = 4;
+    public static int ALI_PAY = 1;
+    public static String WX_APP_ID;
+}
