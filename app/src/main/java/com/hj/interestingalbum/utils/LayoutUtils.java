@@ -13,7 +13,7 @@ public class LayoutUtils {
             return;
         }
         //设置banner样式
-        banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE);
+        banner.setBannerStyle(BannerConfig.CENTER);
         //设置图片加载器
         banner.setImageLoader(new GlideImageLoader());
         //设置图片集合

@@ -13,7 +13,9 @@ import android.widget.TextView;
 
 import com.hj.interestingalbum.MyConstant;
 import com.hj.interestingalbum.R;
+import com.hj.interestingalbum.activity.MainActivity;
 import com.hj.interestingalbum.utils.AnimUtil;
+import com.hj.interestingalbum.utils.MyToast;
 import com.hj.interestingalbum.utils.ScreenUtils;
 
 import java.util.concurrent.atomic.AtomicReference;
@@ -35,7 +37,7 @@ public class HomePopupWindow implements View.OnClickListener {
         }
     }
 
-    public void init(final Activity mContext) {
+    public HomePopupWindow init(final Activity mContext) {
         View contentView = LayoutInflater.from(mContext).inflate(R.layout.popup_layout, null);
 //        mPopupWindow.setFocusable(true);
 
@@ -68,6 +70,7 @@ public class HomePopupWindow implements View.OnClickListener {
                 mContext.getWindow().setAttributes(lp);
             }
         });
+        return this;
     }
 
     private long time;
@@ -75,7 +78,6 @@ public class HomePopupWindow implements View.OnClickListener {
     public void show(View view) {
         if (!isShow() && System.currentTimeMillis() - time > 450) {
             showAsDropDown(mPopupWindow, view, 0, 0);
-
         }
     }
 
@@ -101,6 +103,19 @@ public class HomePopupWindow implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-
+        switch (v.getId()) {
+            case R.id.tv_toolbar_add:
+                MyToast.makeText(v.getContext(), "添加朋友", 0).show();
+                mPopupWindow.dismiss();
+                break;
+            case R.id.toolbar_scan:
+                MyToast.makeText(v.getContext(), "扫一扫", 0).show();
+                mPopupWindow.dismiss();
+                break;
+            case R.id.toolbar_pay:
+                MyToast.makeText(v.getContext(), "收付款", 0).show();
+                mPopupWindow.dismiss();
+                break;
+        }
     }
 }

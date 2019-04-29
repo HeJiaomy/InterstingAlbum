@@ -1,5 +1,6 @@
 package com.hj.interestingalbum.base;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -45,5 +46,17 @@ public abstract class BaseFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+    }
+
+    public void goActivity(Class<?> clazz) {
+        startActivity(new Intent(getActivity(), clazz));
+    }
+
+    public void goActivity(Class<?> cls, Bundle bundle) {
+        Intent intent = new Intent(getActivity(), cls);
+        if (bundle != null) {
+            intent.putExtras(bundle);
+        }
+        startActivity(intent);
     }
 }

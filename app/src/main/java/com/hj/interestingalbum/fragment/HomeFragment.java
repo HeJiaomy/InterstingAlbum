@@ -1,41 +1,52 @@
 package com.hj.interestingalbum.fragment;
 
-import android.app.Service;
 import android.content.Intent;
-import android.graphics.Color;
-import android.os.Vibrator;
-import android.support.v7.widget.GridLayoutManager;
+import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.helper.ItemTouchHelper;
+import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.hj.interestingalbum.R;
+import com.hj.interestingalbum.activity.PhotoActivity;
 import com.hj.interestingalbum.activity.SearchActivity;
 import com.hj.interestingalbum.base.BaseFragment;
 import com.hj.interestingalbum.bean.ThreedBean;
+import com.hj.interestingalbum.dialog.HomePopupWindow;
 import com.hj.interestingalbum.fragment.viewbinder.ThreedViewBinder;
 import com.hj.interestingalbum.roll3d.DividerGridItemDecoration;
-import com.hj.interestingalbum.roll3d.OnRecyclerItemClickListener;
+import com.hj.interestingalbum.utils.LayoutUtils;
+import com.youth.banner.Banner;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import butterknife.Unbinder;
 import me.drakeet.multitype.MultiTypeAdapter;
 
-/**
- * 3D
- */
 public class HomeFragment extends BaseFragment {
 
-    @BindView(R.id.threed_recyclerView)
+    @BindView(R.id.home_category_recyclerView)
     RecyclerView mRecyclerView;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+    @BindView(R.id.banner)
+    Banner banner;
+    @BindView(R.id.home_more_ll)
+    LinearLayout moreLl;
+
     private MultiTypeAdapter myAdapter;
-    private List<Object> threedBeans;
-    private ItemTouchHelper mItemTouchHelper;
+    private ArrayList<ThreedBean> threedBeans;
+    public static final String PHOTOBEAN_LIST = null;
 
     @Override
     public int getLayoutResId() {
@@ -44,11 +55,11 @@ public class HomeFragment extends BaseFragment {
 
     @Override
     public void initView() {
-        myAdapter.register(ThreedBean.class, new ThreedViewBinder(getContext()));
-        mRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));
+        toolbar.setTitle("首页");
+        myAdapter.register(ThreedBean.class, new ThreedViewBinder());
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecyclerView.addItemDecoration(new DividerGridItemDecoration());
         mRecyclerView.setAdapter(myAdapter);
-        setTouch();
     }
 
     @Override
@@ -91,6 +102,15 @@ public class HomeFragment extends BaseFragment {
         threedBeans.add(bean5);
         threedBeans.add(bean6);
         myAdapter = new MultiTypeAdapter(threedBeans);
+        List imageViewList = new ArrayList<>();
+        imageViewList.add(R.mipmap.apple);
+        imageViewList.add(R.mipmap.banana);
+        imageViewList.add(R.mipmap.nav_icon);
+        List<String> bannerTitles = new ArrayList<>();
+        bannerTitles.add("1月");
+        bannerTitles.add("2月");
+        bannerTitles.add("3月");
+        LayoutUtils.setBanner(banner, imageViewList, bannerTitles);
     }
 
     @Override
@@ -108,7 +128,7 @@ public class HomeFragment extends BaseFragment {
                 startActivity(intent);
                 break;
             case R.id.toolbar_plus:
-//                showPopupWindow();
+                HomePopupWindow.getInstance().init(getActivity()).show(toolbar);
                 break;
         }
         return true;
@@ -119,112 +139,11 @@ public class HomeFragment extends BaseFragment {
         super.onPrepareOptionsMenu(menu);
     }
 
-    private void setTouch() {
-        mRecyclerView.addOnItemTouchListener(new OnRecyclerItemClickListener(mRecyclerView) {
-            @Override
-            public void onItemClick(RecyclerView.ViewHolder vh) {
-            }
 
-            @Override
-            public void onItemLongClick(RecyclerView.ViewHolder vh) {
-                //判断被拖拽的是否是前两个，如果不是则执行拖拽
-//                if (vh.getLayoutPosition() != 0 && vh.getLayoutPosition() != 1) {
-                mItemTouchHelper.startDrag(vh);
-
-                //获取系统震动服务
-                Vibrator vib = (Vibrator) getContext().getSystemService(Service.VIBRATOR_SERVICE);//震动70毫秒
-                vib.vibrate(70);
-//                }
-            }
-        });
-
-        mItemTouchHelper = new ItemTouchHelper(new ItemTouchHelper.Callback() {
-
-            /**
-             * 是否处理滑动事件 以及拖拽和滑动的方向 如果是列表类型的RecyclerView的只存在UP和DOWN，如果是网格类RecyclerView则还应该多有LEFT和RIGHT
-             *
-             * @param recyclerView
-             * @param viewHolder
-             * @return
-             */
-            @Override
-            public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
-                if (recyclerView.getLayoutManager() instanceof GridLayoutManager) {
-                    final int dragFlags = ItemTouchHelper.UP | ItemTouchHelper.DOWN |
-                            ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT;
-                    final int swipeFlags = 0;
-                    return makeMovementFlags(dragFlags, swipeFlags);
-                } else {
-                    final int dragFlags = ItemTouchHelper.UP | ItemTouchHelper.DOWN;
-                    final int swipeFlags = 0;
-//                    final int swipeFlags = ItemTouchHelper.START | ItemTouchHelper.END;
-                    return makeMovementFlags(dragFlags, swipeFlags);
-                }
-            }
-
-            @Override
-            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
-                //得到当拖拽的viewHolder的Position
-                int fromPosition = viewHolder.getAdapterPosition();
-                //拿到当前拖拽到的item的viewHolder
-                int toPosition = target.getAdapterPosition();
-                if (fromPosition < toPosition) {
-                    for (int i = fromPosition; i < toPosition; i++) {
-                        Collections.swap(threedBeans, i, i + 1);
-                    }
-                } else {
-                    for (int i = fromPosition; i > toPosition; i--) {
-                        Collections.swap(threedBeans, i, i - 1);
-                    }
-                }
-                myAdapter.notifyItemMoved(fromPosition, toPosition);
-                return true;
-            }
-
-            @Override
-            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
-//                int position = viewHolder.getAdapterPosition();
-//                myAdapter.notifyItemRemoved(position);
-//                threedBeans.remove(position);
-            }
-
-            /**
-             * 重写拖拽可用
-             *
-             * @return
-             */
-            @Override
-            public boolean isLongPressDragEnabled() {
-                return false;
-            }
-
-            /**
-             * 长按选中Item的时候开始调用
-             *
-             * @param viewHolder
-             * @param actionState
-             */
-            @Override
-            public void onSelectedChanged(RecyclerView.ViewHolder viewHolder, int actionState) {
-                if (actionState != ItemTouchHelper.ACTION_STATE_IDLE) {
-                    viewHolder.itemView.setBackgroundColor(Color.LTGRAY);
-                }
-                super.onSelectedChanged(viewHolder, actionState);
-            }
-
-            /**
-             * 手指松开的时候还原
-             *
-             * @param recyclerView
-             * @param viewHolder
-             */
-            @Override
-            public void clearView(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
-                super.clearView(recyclerView, viewHolder);
-                viewHolder.itemView.setBackgroundColor(0);
-                myAdapter.notifyDataSetChanged();
-            }
-        });
-        mItemTouchHelper.attachToRecyclerView(mRecyclerView);
+    @OnClick(R.id.home_more_ll)
+    public void onViewClicked() {
+        Bundle bundle = new Bundle();
+        bundle.putParcelableArrayList(PHOTOBEAN_LIST, threedBeans);
+        goActivity(PhotoActivity.class, bundle);
     }
 }

@@ -3,13 +3,8 @@ package com.hj.interestingalbum.activity;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.widget.PopupWindow;
 import android.widget.RadioButton;
-import android.widget.TextView;
 
 import com.hj.interestingalbum.R;
 import com.hj.interestingalbum.adapter.FragmentAdapter;
@@ -26,7 +21,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class MainActivity extends BaseActivity implements ViewPager.OnPageChangeListener, View.OnClickListener {
+public class MainActivity extends BaseActivity implements ViewPager.OnPageChangeListener {
 
     @BindView(R.id.main_view_pager)
     ViewPager mainViewPager;
@@ -39,7 +34,6 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
     @BindView(R.id.rBtn_mine)
     RadioButton rBtnMine;
 
-    private PopupWindow popupWindow;
     private long pressTime;
     private FragmentAdapter fragmentAdapter;
 
@@ -69,11 +63,6 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
         mainViewPager.setAdapter(fragmentAdapter);
         mainViewPager.setOffscreenPageLimit(2);//预加载两个页面
         mainViewPager.addOnPageChangeListener(this);
-    }
-
-    private void showPopupWindow() {
-
-
     }
 
     @OnClick({R.id.rBtn_3d, R.id.rBtn_fullScreen, R.id.rBtn_all, R.id.rBtn_mine})
@@ -165,24 +154,5 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
     @Override
     public void onPageScrollStateChanged(int state) {
 
-    }
-
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.tv_toolbar_add:
-                MyToast.makeText(MainActivity.this, "添加朋友", 0).show();
-                popupWindow.dismiss();
-                break;
-            case R.id.toolbar_scan:
-                MyToast.makeText(MainActivity.this, "扫一扫", 0).show();
-                popupWindow.dismiss();
-                break;
-            case R.id.toolbar_pay:
-                MyToast.makeText(MainActivity.this, "收付款", 0).show();
-                popupWindow.dismiss();
-                break;
-        }
     }
 }

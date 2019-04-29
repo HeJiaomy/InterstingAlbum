@@ -19,11 +19,6 @@ import me.drakeet.multitype.ItemViewProvider;
 
 public class ThreedViewBinder extends ItemViewProvider<ThreedBean, ThreedViewBinder.ViewHolder> {
 
-    Context context;
-    public ThreedViewBinder(Context context) {
-        this.context= context;
-    }
-
     @NonNull
     @Override
     protected ViewHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
@@ -33,20 +28,30 @@ public class ThreedViewBinder extends ItemViewProvider<ThreedBean, ThreedViewBin
 
     @Override
     protected void onBindViewHolder(@NonNull final ViewHolder holder, @NonNull final ThreedBean threedBean) {
+        Context context = holder.rootView.getContext();
         holder.threedImg.setImageResource(threedBean.getThreedImg());
         holder.threedTitle.setText(threedBean.getTitle());
         holder.rootView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                switch (threedBean.getId()){
+                switch (threedBean.getId()) {
                     case 1:
-                        MyToast.makeText(context,threedBean.getTitle(),0).show();
+                        MyToast.makeText(context, threedBean.getTitle(), 0).show();
                         break;
                     case 2:
-                        MyToast.makeText(context,threedBean.getTitle(),0).show();
+                        MyToast.makeText(context, threedBean.getTitle(), 0).show();
                         break;
                     case 3:
-                        MyToast.makeText(context,threedBean.getTitle(),0).show();
+                        MyToast.makeText(context, threedBean.getTitle(), 0).show();
+                        break;
+                    case 4:
+                        MyToast.makeText(context, threedBean.getTitle(), 0).show();
+                        break;
+                    case 5:
+                        MyToast.makeText(context, threedBean.getTitle(), 0).show();
+                        break;
+                    case 6:
+                        MyToast.makeText(context, threedBean.getTitle(), 0).show();
                         break;
                 }
             }
@@ -62,8 +67,8 @@ public class ThreedViewBinder extends ItemViewProvider<ThreedBean, ThreedViewBin
 
         public ViewHolder(View itemView) {
             super(itemView);
-            rootView= itemView;
-            ButterKnife.bind(this,itemView);
+            rootView = itemView;
+            ButterKnife.bind(this, itemView);
         }
     }
 }
