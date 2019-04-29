@@ -22,7 +22,7 @@ public class ThreedViewBinder extends ItemViewProvider<ThreedBean, ThreedViewBin
     @NonNull
     @Override
     protected ViewHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
-        View view = inflater.inflate(R.layout.item_threed_layout, parent, false);
+        View view = inflater.inflate(R.layout.item_photo_layout, parent, false);
         return new ViewHolder(view);
     }
 
@@ -59,9 +59,9 @@ public class ThreedViewBinder extends ItemViewProvider<ThreedBean, ThreedViewBin
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.threed_img)
+        @BindView(R.id.photo_img)
         ImageView threedImg;
-        @BindView(R.id.threed_title)
+        @BindView(R.id.photo_title)
         TextView threedTitle;
         View rootView;
 

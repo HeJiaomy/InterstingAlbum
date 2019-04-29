@@ -5,13 +5,9 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 import com.hj.interestingalbum.R;
 import com.hj.interestingalbum.activity.PhotoActivity;
@@ -20,17 +16,14 @@ import com.hj.interestingalbum.base.BaseFragment;
 import com.hj.interestingalbum.bean.ThreedBean;
 import com.hj.interestingalbum.dialog.HomePopupWindow;
 import com.hj.interestingalbum.fragment.viewbinder.ThreedViewBinder;
-import com.hj.interestingalbum.roll3d.DividerGridItemDecoration;
-import com.hj.interestingalbum.utils.LayoutUtils;
+import com.hj.interestingalbum.utils.BannerUtil;
 import com.youth.banner.Banner;
+import com.youth.banner.listener.OnBannerListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-import butterknife.Unbinder;
 import me.drakeet.multitype.MultiTypeAdapter;
 
 public class HomeFragment extends BaseFragment {
@@ -41,8 +34,6 @@ public class HomeFragment extends BaseFragment {
     Toolbar toolbar;
     @BindView(R.id.banner)
     Banner banner;
-    @BindView(R.id.home_more_ll)
-    LinearLayout moreLl;
 
     private MultiTypeAdapter myAdapter;
     private ArrayList<ThreedBean> threedBeans;
@@ -57,9 +48,18 @@ public class HomeFragment extends BaseFragment {
     public void initView() {
         toolbar.setTitle("首页");
         myAdapter.register(ThreedBean.class, new ThreedViewBinder());
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        mRecyclerView.addItemDecoration(new DividerGridItemDecoration());
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setAdapter(myAdapter);
+        banner.setOnBannerListener(new OnBannerListener() {
+            @Override
+            public void OnBannerClick(int position) {
+                Bundle bundle = new Bundle();
+                bundle.putParcelableArrayList(PHOTOBEAN_LIST, threedBeans);
+                goActivity(PhotoActivity.class, bundle);
+            }
+        });
     }
 
     @Override
@@ -68,32 +68,32 @@ public class HomeFragment extends BaseFragment {
         ThreedBean bean1 = new ThreedBean();
         bean1.setId(1);
         bean1.setTitle("1月");
-        bean1.setThreedImg(R.mipmap.apple);
+        bean1.setThreedImg(R.mipmap.ic_launcher);
 
         ThreedBean bean2 = new ThreedBean();
         bean2.setId(2);
         bean2.setTitle("2月");
-        bean2.setThreedImg(R.mipmap.banana);
+        bean2.setThreedImg(R.mipmap.ic_launcher);
 
         ThreedBean bean3 = new ThreedBean();
         bean3.setId(3);
         bean3.setTitle("3月");
-        bean3.setThreedImg(R.mipmap.strawberry);
+        bean3.setThreedImg(R.mipmap.ic_launcher);
 
         ThreedBean bean4 = new ThreedBean();
         bean4.setId(4);
         bean4.setTitle("4月");
-        bean4.setThreedImg(R.mipmap.watermelon);
+        bean4.setThreedImg(R.mipmap.ic_launcher);
 
         ThreedBean bean5 = new ThreedBean();
         bean5.setId(5);
         bean5.setTitle("5月");
-        bean5.setThreedImg(R.mipmap.nav_icon);
+        bean5.setThreedImg(R.mipmap.ic_launcher);
 
         ThreedBean bean6 = new ThreedBean();
         bean6.setId(6);
         bean6.setTitle("6月");
-        bean6.setThreedImg(R.mipmap.nav_icon);
+        bean6.setThreedImg(R.mipmap.ic_launcher);
 
         threedBeans.add(bean1);
         threedBeans.add(bean2);
@@ -102,15 +102,15 @@ public class HomeFragment extends BaseFragment {
         threedBeans.add(bean5);
         threedBeans.add(bean6);
         myAdapter = new MultiTypeAdapter(threedBeans);
-        List imageViewList = new ArrayList<>();
-        imageViewList.add(R.mipmap.apple);
-        imageViewList.add(R.mipmap.banana);
-        imageViewList.add(R.mipmap.nav_icon);
+        List<Integer> imageViewList = new ArrayList<>();
+        for (int i = 0; i < 3; i++) {
+            imageViewList.add(R.mipmap.ic_launcher);
+        }
         List<String> bannerTitles = new ArrayList<>();
         bannerTitles.add("1月");
         bannerTitles.add("2月");
         bannerTitles.add("3月");
-        LayoutUtils.setBanner(banner, imageViewList, bannerTitles);
+        BannerUtil.setBanner(banner, imageViewList, bannerTitles);
     }
 
     @Override
@@ -137,13 +137,5 @@ public class HomeFragment extends BaseFragment {
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
         super.onPrepareOptionsMenu(menu);
-    }
-
-
-    @OnClick(R.id.home_more_ll)
-    public void onViewClicked() {
-        Bundle bundle = new Bundle();
-        bundle.putParcelableArrayList(PHOTOBEAN_LIST, threedBeans);
-        goActivity(PhotoActivity.class, bundle);
     }
 }

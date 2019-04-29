@@ -51,12 +51,12 @@ public class PhotoActivity extends BaseActivity {
         mAdapter = new MultiTypeAdapter(items);
         mAdapter.register(ThreedBean.class, new ThreedViewBinder());
         mRecyclerView.setLayoutManager(new GridLayoutManager(this, 3));
-        mRecyclerView.addItemDecoration(new DividerGridItemDecoration());
         mRecyclerView.setAdapter(mAdapter);
         threedBeans = getIntent().getParcelableArrayListExtra(HomeFragment.PHOTOBEAN_LIST);
         if (CommonUtil.unEmpty(threedBeans)) {
             items.addAll(threedBeans);
         }
+        setTouch();
     }
 
     private void setTouch() {

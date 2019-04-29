@@ -7,19 +7,19 @@ import com.youth.banner.Transformer;
 
 import java.util.List;
 
-public class LayoutUtils {
+public class BannerUtil {
     public static void setBanner(Banner banner, List images,List<String> titles){
         if (ListUtil.isEmpty(images)){
             return;
         }
         //设置banner样式
-        banner.setBannerStyle(BannerConfig.CENTER);
+        banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR);
         //设置图片加载器
         banner.setImageLoader(new GlideImageLoader());
         //设置图片集合
         banner.setImages(images);
         //设置banner动画效果
-        banner.setBannerAnimation(Transformer.ForegroundToBackground);
+        banner.setBannerAnimation(Transformer.Default);
         //设置标题集合（当banner样式有显示title时）
         banner.setBannerTitles(titles);
         //设置自动轮播，默认为true
