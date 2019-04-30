@@ -4,6 +4,7 @@ import com.hj.interestingalbum.R;
 import com.hj.interestingalbum.base.BaseFragment;
 
 public class MineFragment extends BaseFragment {
+
     @Override
     public void initView() {
 
@@ -18,4 +19,5 @@ public class MineFragment extends BaseFragment {
     public int getLayoutResId() {
         return R.layout.fragment_mine;
     }
+
 }

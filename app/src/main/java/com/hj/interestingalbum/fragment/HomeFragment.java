@@ -13,9 +13,9 @@ import com.hj.interestingalbum.R;
 import com.hj.interestingalbum.activity.PhotoActivity;
 import com.hj.interestingalbum.activity.SearchActivity;
 import com.hj.interestingalbum.base.BaseFragment;
-import com.hj.interestingalbum.bean.ThreedBean;
+import com.hj.interestingalbum.bean.PhotoBean;
 import com.hj.interestingalbum.dialog.HomePopupWindow;
-import com.hj.interestingalbum.fragment.viewbinder.ThreedViewBinder;
+import com.hj.interestingalbum.fragment.viewbinder.PhotoViewBinder;
 import com.hj.interestingalbum.utils.BannerUtil;
 import com.youth.banner.Banner;
 import com.youth.banner.listener.OnBannerListener;
@@ -36,7 +36,7 @@ public class HomeFragment extends BaseFragment {
     Banner banner;
 
     private MultiTypeAdapter myAdapter;
-    private ArrayList<ThreedBean> threedBeans;
+    private ArrayList<PhotoBean> photoBeans;
     public static final String PHOTOBEAN_LIST = null;
 
     @Override
@@ -47,7 +47,7 @@ public class HomeFragment extends BaseFragment {
     @Override
     public void initView() {
         toolbar.setTitle("首页");
-        myAdapter.register(ThreedBean.class, new ThreedViewBinder());
+        myAdapter.register(PhotoBean.class, new PhotoViewBinder());
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         mRecyclerView.setLayoutManager(layoutManager);
@@ -56,7 +56,7 @@ public class HomeFragment extends BaseFragment {
             @Override
             public void OnBannerClick(int position) {
                 Bundle bundle = new Bundle();
-                bundle.putParcelableArrayList(PHOTOBEAN_LIST, threedBeans);
+                bundle.putParcelableArrayList(PHOTOBEAN_LIST, photoBeans);
                 goActivity(PhotoActivity.class, bundle);
             }
         });
@@ -64,44 +64,44 @@ public class HomeFragment extends BaseFragment {
 
     @Override
     public void initData() {
-        threedBeans = new ArrayList<>();
-        ThreedBean bean1 = new ThreedBean();
+        photoBeans = new ArrayList<>();
+        PhotoBean bean1 = new PhotoBean();
         bean1.setId(1);
         bean1.setTitle("1月");
         bean1.setThreedImg(R.mipmap.ic_launcher);
 
-        ThreedBean bean2 = new ThreedBean();
+        PhotoBean bean2 = new PhotoBean();
         bean2.setId(2);
         bean2.setTitle("2月");
         bean2.setThreedImg(R.mipmap.ic_launcher);
 
-        ThreedBean bean3 = new ThreedBean();
+        PhotoBean bean3 = new PhotoBean();
         bean3.setId(3);
         bean3.setTitle("3月");
         bean3.setThreedImg(R.mipmap.ic_launcher);
 
-        ThreedBean bean4 = new ThreedBean();
+        PhotoBean bean4 = new PhotoBean();
         bean4.setId(4);
         bean4.setTitle("4月");
         bean4.setThreedImg(R.mipmap.ic_launcher);
 
-        ThreedBean bean5 = new ThreedBean();
+        PhotoBean bean5 = new PhotoBean();
         bean5.setId(5);
         bean5.setTitle("5月");
         bean5.setThreedImg(R.mipmap.ic_launcher);
 
-        ThreedBean bean6 = new ThreedBean();
+        PhotoBean bean6 = new PhotoBean();
         bean6.setId(6);
         bean6.setTitle("6月");
         bean6.setThreedImg(R.mipmap.ic_launcher);
 
-        threedBeans.add(bean1);
-        threedBeans.add(bean2);
-        threedBeans.add(bean3);
-        threedBeans.add(bean4);
-        threedBeans.add(bean5);
-        threedBeans.add(bean6);
-        myAdapter = new MultiTypeAdapter(threedBeans);
+        photoBeans.add(bean1);
+        photoBeans.add(bean2);
+        photoBeans.add(bean3);
+        photoBeans.add(bean4);
+        photoBeans.add(bean5);
+        photoBeans.add(bean6);
+        myAdapter = new MultiTypeAdapter(photoBeans);
         List<Integer> imageViewList = new ArrayList<>();
         for (int i = 0; i < 3; i++) {
             imageViewList.add(R.mipmap.ic_launcher);

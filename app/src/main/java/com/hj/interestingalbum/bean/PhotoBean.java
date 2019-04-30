@@ -3,12 +3,12 @@ package com.hj.interestingalbum.bean;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class ThreedBean implements Parcelable {
+public class PhotoBean implements Parcelable {
     private int id;
     private int threedImg;
     private String title;
 
-    public ThreedBean() {
+    public PhotoBean() {
     }
 
     public int getId() {
@@ -35,21 +35,21 @@ public class ThreedBean implements Parcelable {
         this.title = title;
     }
 
-    protected ThreedBean(Parcel in) {
+    protected PhotoBean(Parcel in) {
         id = in.readInt();
         threedImg = in.readInt();
         title = in.readString();
     }
 
-    public static final Creator<ThreedBean> CREATOR = new Creator<ThreedBean>() {
+    public static final Creator<PhotoBean> CREATOR = new Creator<PhotoBean>() {
         @Override
-        public ThreedBean createFromParcel(Parcel in) {
-            return new ThreedBean(in);
+        public PhotoBean createFromParcel(Parcel in) {
+            return new PhotoBean(in);
         }
 
         @Override
-        public ThreedBean[] newArray(int size) {
-            return new ThreedBean[size];
+        public PhotoBean[] newArray(int size) {
+            return new PhotoBean[size];
         }
     };
 

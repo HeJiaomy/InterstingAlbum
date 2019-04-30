@@ -2,19 +2,16 @@ package com.hj.interestingalbum.activity;
 
 import android.app.Service;
 import android.graphics.Color;
-import android.os.Parcelable;
 import android.os.Vibrator;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 
 import com.hj.interestingalbum.R;
 import com.hj.interestingalbum.base.BaseActivity;
-import com.hj.interestingalbum.bean.ThreedBean;
+import com.hj.interestingalbum.bean.PhotoBean;
 import com.hj.interestingalbum.fragment.HomeFragment;
-import com.hj.interestingalbum.fragment.viewbinder.ThreedViewBinder;
-import com.hj.interestingalbum.roll3d.DividerGridItemDecoration;
+import com.hj.interestingalbum.fragment.viewbinder.PhotoViewBinder;
 import com.hj.interestingalbum.roll3d.OnRecyclerItemClickListener;
 import com.hj.interestingalbum.utils.CommonUtil;
 
@@ -33,7 +30,7 @@ public class PhotoActivity extends BaseActivity {
     private MultiTypeAdapter mAdapter;
     private Items items;
     private ItemTouchHelper mItemTouchHelper;
-    ArrayList<ThreedBean> threedBeans;
+    ArrayList<PhotoBean> photoBeans;
 
     @Override
     public int getLayoutResID() {
@@ -49,12 +46,12 @@ public class PhotoActivity extends BaseActivity {
     public void initView() {
         items = new Items();
         mAdapter = new MultiTypeAdapter(items);
-        mAdapter.register(ThreedBean.class, new ThreedViewBinder());
+        mAdapter.register(PhotoBean.class, new PhotoViewBinder());
         mRecyclerView.setLayoutManager(new GridLayoutManager(this, 3));
         mRecyclerView.setAdapter(mAdapter);
-        threedBeans = getIntent().getParcelableArrayListExtra(HomeFragment.PHOTOBEAN_LIST);
-        if (CommonUtil.unEmpty(threedBeans)) {
-            items.addAll(threedBeans);
+        photoBeans = getIntent().getParcelableArrayListExtra(HomeFragment.PHOTOBEAN_LIST);
+        if (CommonUtil.unEmpty(photoBeans)) {
+            items.addAll(photoBeans);
         }
         setTouch();
     }
@@ -110,11 +107,11 @@ public class PhotoActivity extends BaseActivity {
                 int toPosition = target.getAdapterPosition();
                 if (fromPosition < toPosition) {
                     for (int i = fromPosition; i < toPosition; i++) {
-                        Collections.swap(threedBeans, i, i + 1);
+                        Collections.swap(photoBeans, i, i + 1);
                     }
                 } else {
                     for (int i = fromPosition; i > toPosition; i--) {
-                        Collections.swap(threedBeans, i, i - 1);
+                        Collections.swap(photoBeans, i, i - 1);
                     }
                 }
                 mAdapter.notifyItemMoved(fromPosition, toPosition);
@@ -125,7 +122,7 @@ public class PhotoActivity extends BaseActivity {
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
 //                int position = viewHolder.getAdapterPosition();
 //                myAdapter.notifyItemRemoved(position);
-//                threedBeans.remove(position);
+//                photoBeans.remove(position);
             }
 
             /**

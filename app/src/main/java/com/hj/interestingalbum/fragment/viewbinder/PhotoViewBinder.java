@@ -10,14 +10,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hj.interestingalbum.R;
-import com.hj.interestingalbum.bean.ThreedBean;
+import com.hj.interestingalbum.bean.PhotoBean;
 import com.hj.interestingalbum.utils.MyToast;
+import com.scwang.smartrefresh.header.material.CircleImageView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import me.drakeet.multitype.ItemViewProvider;
 
-public class ThreedViewBinder extends ItemViewProvider<ThreedBean, ThreedViewBinder.ViewHolder> {
+public class PhotoViewBinder extends ItemViewProvider<PhotoBean, PhotoViewBinder.ViewHolder> {
 
     @NonNull
     @Override
@@ -27,31 +28,31 @@ public class ThreedViewBinder extends ItemViewProvider<ThreedBean, ThreedViewBin
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull final ViewHolder holder, @NonNull final ThreedBean threedBean) {
+    protected void onBindViewHolder(@NonNull final ViewHolder holder, @NonNull final PhotoBean photoBean) {
         Context context = holder.rootView.getContext();
-        holder.threedImg.setImageResource(threedBean.getThreedImg());
-        holder.threedTitle.setText(threedBean.getTitle());
+        holder.photoImg.setImageResource(photoBean.getThreedImg());
+        holder.photoTitle.setText(photoBean.getTitle());
         holder.rootView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                switch (threedBean.getId()) {
+                switch (photoBean.getId()) {
                     case 1:
-                        MyToast.makeText(context, threedBean.getTitle(), 0).show();
+                        MyToast.makeText(context, photoBean.getTitle(), 0).show();
                         break;
                     case 2:
-                        MyToast.makeText(context, threedBean.getTitle(), 0).show();
+                        MyToast.makeText(context, photoBean.getTitle(), 0).show();
                         break;
                     case 3:
-                        MyToast.makeText(context, threedBean.getTitle(), 0).show();
+                        MyToast.makeText(context, photoBean.getTitle(), 0).show();
                         break;
                     case 4:
-                        MyToast.makeText(context, threedBean.getTitle(), 0).show();
+                        MyToast.makeText(context, photoBean.getTitle(), 0).show();
                         break;
                     case 5:
-                        MyToast.makeText(context, threedBean.getTitle(), 0).show();
+                        MyToast.makeText(context, photoBean.getTitle(), 0).show();
                         break;
                     case 6:
-                        MyToast.makeText(context, threedBean.getTitle(), 0).show();
+                        MyToast.makeText(context, photoBean.getTitle(), 0).show();
                         break;
                 }
             }
@@ -60,9 +61,9 @@ public class ThreedViewBinder extends ItemViewProvider<ThreedBean, ThreedViewBin
 
     class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.photo_img)
-        ImageView threedImg;
+        ImageView photoImg;
         @BindView(R.id.photo_title)
-        TextView threedTitle;
+        TextView photoTitle;
         View rootView;
 
         public ViewHolder(View itemView) {
